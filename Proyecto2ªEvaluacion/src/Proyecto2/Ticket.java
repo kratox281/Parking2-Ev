@@ -10,7 +10,9 @@ public class Ticket {
     protected int fila;
     protected int columna;
     protected int planta;
+    public Ticket(){
 
+    }
     public Ticket(String matricula, Date entrada,int fila,int columna,int planta) {
         setId(cont);
         cont++;
@@ -61,4 +63,9 @@ public class Ticket {
     public void setColumna(int columna) {
         this.columna = columna;
     }
+
+    public boolean compareTo(Ticket nuevo) {
+        return true;
+    }
 }
+
