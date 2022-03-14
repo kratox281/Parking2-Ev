@@ -11,9 +11,9 @@ public class Parking {
     private Ticket vacio= new Ticket("",new Date(0),0,0,0);
 
     public Parking() {
-        Arrays.fill(planta1,vacio);
-        Arrays.fill(planta2,vacio);
-        Arrays.fill(planta3,vacio);
+        IntroducirDatos.rellenar(planta1,vacio);
+        IntroducirDatos.rellenar(planta2,vacio);
+        IntroducirDatos.rellenar(planta3,vacio);
     }
 
     public String introducirMatricula(){
@@ -61,8 +61,11 @@ public class Parking {
     }
 
     public void sacarCoche() {
+        System.out.println("Adios");
+    }
 
-
+    public void mostrarParking(){
+        System.out.println("HOLA");
     }
 }
 

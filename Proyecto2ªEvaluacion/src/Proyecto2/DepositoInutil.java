@@ -197,9 +197,7 @@ public class DepositoInutil {
                 this.setVueltas(modificar(this.getVueltas(),0.01));
                 this.setMonedas01(this.Monedas01-1);
 
-            }//else{
-               // System.out.println("Lo sentimos,no disponemos de cambio");
-            //}
+            }
 
         }while (this.getVueltas()!=0);
     }

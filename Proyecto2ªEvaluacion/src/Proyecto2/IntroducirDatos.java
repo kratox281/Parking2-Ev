@@ -1,21 +1,30 @@
 package Proyecto2;
+import java.util.Arrays;
 import java.util.Scanner;
 public class IntroducirDatos {
 
-    Scanner tc = new Scanner(System.in);
+    static Scanner tc = new Scanner(System.in);
 
-    public String introducirStrings(String msg){
+    public  static String introducirStrings(String msg){
         System.out.println(msg);
         return tc.nextLine();
     }
 
-    public int introducirInts(String msg){
+    public static int introducirInts(String msg){
         System.out.println(msg);
         return tc.nextInt();
     }
 
-    public double introducirDoubles(String msg){
+    public static double introducirDoubles(String msg){
         System.out.println(msg);
         return tc.nextDouble();
+    }
+    public static void rellenar(Ticket[][] a,Ticket o){
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[0].length; j++) {
+                a[i][j] = o;
+            }
+        }
+
     }
 }
