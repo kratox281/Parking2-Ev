@@ -120,7 +120,7 @@ public class Parking {
         for (int i = 0; i < planta1.length; i++) {
             for (int j = 0; j <planta1[0].length; j++) {
                 if(planta1[i][j].compareTo(vacio)){
-                    System.out.print("║ ║");
+                    System.out.print(" ║ ║");
                 }
                 else{
                     System.out.print("║█║");
@@ -133,7 +133,7 @@ public class Parking {
         for (int i = 0; i < planta1.length; i++) {
             for (int j = 0; j <planta1[0].length; j++) {
                 if(planta2[i][j].compareTo(vacio)){
-                    System.out.print("║ ║");
+                    System.out.print(" ║ ║");
                 }
                 else{
                     System.out.print("║█║");
@@ -146,7 +146,7 @@ public class Parking {
         for (int i = 0; i < planta1.length; i++) {
             for (int j = 0; j <planta1[0].length; j++) {
                 if(planta3[i][j].compareTo(vacio)){
-                    System.out.print("║ ║");
+                    System.out.print(" ║ ║");
                 }
                 else{
                     System.out.print("║█║");
