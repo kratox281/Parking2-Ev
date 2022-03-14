@@ -1,19 +1,20 @@
 package Proyecto2;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Ticket {
     protected int id;
-    public int cont = 0;
+    static int cont = 0;
     protected String Matricula;
-    protected Date entrada;
+    protected LocalDate entrada;
     protected int fila;
     protected int columna;
     protected int planta;
     public Ticket(){
 
     }
-    public Ticket(String matricula, Date entrada,int fila,int columna,int planta) {
+    public Ticket(String matricula, LocalDate entrada,int fila,int columna,int planta) {
         setId(cont);
         cont++;
         Matricula = matricula;
@@ -40,11 +41,11 @@ public class Ticket {
         Matricula = matricula;
     }
 
-    public Date getEntrada() {
+    public LocalDate getEntrada() {
         return entrada;
     }
 
-    public void setEntrada(Date entrada) {
+    public void setEntrada(LocalDate entrada) {
         this.entrada = entrada;
     }
 
@@ -65,7 +66,38 @@ public class Ticket {
     }
 
     public boolean compareTo(Ticket nuevo) {
-        return true;
+
+        return this.Matricula.equals(nuevo.Matricula);
+    }
+    public void imprimirTicket(){
+        System.out.println("┌---------------------------------------------┐");
+        System.out.println("|                    Ticket                   |");
+        System.out.println("|                                             |");
+        System.out.println("|     MATRICULA: "+this.Matricula);
+        System.out.println("|                                             |");
+        System.out.println("|     ID:" + this.id);
+        System.out.println("|                                             |");
+        System.out.println("|     ENTRADA:" + this.entrada);
+        System.out.println("|                                             |");
+        System.out.println("|     FILA:" + this.fila);
+        System.out.println("|                                             |");
+        System.out.println("|     COLUMNA:"+this.columna);
+        System.out.println("|                                             |");
+        System.out.println("|     PLANTA:"+this.planta);
+        System.out.println("|                                             |");
+        System.out.println("|                                             |");
+        System.out.println("└---------------------------------------------┘");
+    }
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", Matricula='" + Matricula + '\'' +
+                ", entrada=" + entrada +
+                ", fila=" + fila +
+                ", columna=" + columna +
+                ", planta=" + planta +
+                '}';
     }
 }
 

@@ -7,7 +7,7 @@ public class IntroducirDatos {
 
     public  static String introducirStrings(String msg){
         System.out.println(msg);
-        return tc.nextLine();
+        return tc.next();
     }
 
     public static int introducirInts(String msg){
