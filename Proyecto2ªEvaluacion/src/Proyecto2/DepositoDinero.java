@@ -1,6 +1,6 @@
 package Proyecto2;
 
-public class DepositoInutil {
+public class DepositoDinero {
     protected  int Monedas05;//Monedas de 5 cent
     protected  int Monedas10;//Monedas de 10 cent
     protected  int Monedas20;//Monedas de 20 cent
@@ -10,10 +10,12 @@ public class DepositoInutil {
     protected  int Billete5;//Billete de 5€
     protected  int Billete10;//Billete de 10€
     protected  int Billete20;//Billete de 20€
-    protected int c1, c2, c3, c4, c5, c6, c7, c8, c9 =0;
+    protected int c1, c2, c3, c4, c5, c6, c7, c8, c9 =0;//Variables que utiliza el programa para contar las veces que se modifican las
+                                                        //variables a la hora de delvolver el dinero
     protected double Vueltas;//Variable que almacena la vuelta que hay que dar cuando se realice el pago
+
     //Constructor del Deposito el cual se construye con 100 monedas y 100 billetes de cada
-    public DepositoInutil() {
+    public DepositoDinero() {
         setBillete5(100);
         setBillete10(100);
         setBillete20(100);
@@ -86,16 +88,18 @@ public class DepositoInutil {
         this.Billete20 = billete20;
     }
 
+    //Metodo que se encarga de dar las vueltas a la hora de realizar el pago del parking
     public boolean darVuelta(double coste,double entregado){
 
         boolean run=true;
-        this.setVueltas(entregado-coste);
-        resetValores();
+        this.setVueltas(entregado-coste);//Establece la vuelta como la diferencia entre el precio y lo entregado
+        resetValores();//Resetea los contadores de uso(c1,c2....)
         do{
+            //Comprueba la mayor unidad monetaria que puede devolver
             if(this.getVueltas()-20>=0 && this.Billete20>0){
-                this.setVueltas(modificar(this.Vueltas,20));
-                this.setBillete20(this.Billete20-1);
-                c9++;
+                this.setVueltas(modificar(this.Vueltas,20));//Modifica la vuelta
+                this.setBillete20(this.Billete20-1);//Modifica la cantidad de dinero restante en el deposito
+                c9++;//Aumenta el contador de uso de esta unidad en concreto
             }else if(this.getVueltas()-10>=0 && this.Billete10>0){
                 this.setVueltas(modificar(this.Vueltas,10));
                 this.setBillete10(this.Billete10-1);
@@ -130,6 +134,7 @@ public class DepositoInutil {
                 c1++;
             }
             if(this.Vueltas==0){
+                //Cuando la vuelta es 0 muestra como se han dado las vueltas y finaliza el bucle
                 mostrarVueltas();
                 return run;
             }
@@ -137,6 +142,7 @@ public class DepositoInutil {
         return true;
     }
     public void mostrarVueltas(){
+        //En caso de que se haya iniciado algun contador muestra cuanto se ha dado de cada moneda
         if(c1>0){
             System.out.println("Se han devuelto "+c1+" monedas de 5 céntimos");
         }
@@ -166,6 +172,7 @@ public class DepositoInutil {
           }
     }
     public void resetValores(){
+        //Pone a cero todos los contadores
         this.c1 = 0;
         this.c2 = 0;
         this.c3 = 0;
@@ -177,6 +184,7 @@ public class DepositoInutil {
         this.c9 = 0;
     }
     public  double modificar(double dinero,double eliminado){
+        //Resta el dinero introducido(Las vueltas) y le resta la unidad monetaria indicada como parametro y devuelve el resultado de la sustraccion
         dinero-=(eliminado);
         return dinero;
     }

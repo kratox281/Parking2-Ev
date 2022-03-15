@@ -1,30 +1,32 @@
 package Proyecto2;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Ticket {
-    protected int id;
-    static int cont = 0;
-    protected String Matricula;
-    protected LocalDate entrada;
-    protected int fila;
-    protected int columna;
-    protected int planta;
+    protected int id;//ID del ticket
+    static int cont = 0;//Cuenta los tickets que se han creado, para despues otorgar a cada uno un ID único
+    protected String Matricula;//Matricula del Vehiculo del vehiculo asociado al ticket
+    protected LocalDate entrada;//Fecha de la impresión del ticket
+    protected int fila;//Fila en la que se encuentra aparcado el vehículo
+    protected int columna;//Columna en la que se encuentra aparcado el vehículo
+    protected int planta;//Planta en la que se encuentra aparcado el vehículo
+    //Constructor vacio de Tickets
     public Ticket(){
 
     }
+    //Constructor completo de Tickets.
     public Ticket(String matricula, LocalDate entrada,int fila,int columna,int planta) {
         setId(cont);
         cont++;
         Matricula = matricula;
         this.entrada = entrada;
-        this.fila=fila;
-        this.columna=columna;
+        this.fila=fila+1;
+        this.columna=columna+1;
         this.planta=planta;
 
     }
 
+    //Getter & Setter
     public int getId() {
         return id;
     }
@@ -64,11 +66,11 @@ public class Ticket {
     public void setColumna(int columna) {
         this.columna = columna;
     }
-
+    //Compara diferentes objetos Tickets mediante la matricula del vehículo al que está asociado
     public boolean compareTo(Ticket nuevo) {
-
         return this.Matricula.equals(nuevo.Matricula);
     }
+    //Imprime el Ticket de una forma más visual y/o estetica
     public void imprimirTicket(){
         System.out.println("┌---------------------------------------------┐");
         System.out.println("|                    Ticket                   |");
@@ -89,6 +91,7 @@ public class Ticket {
         System.out.println("└---------------------------------------------┘");
     }
     @Override
+    //Metodo toString
     public String toString() {
         return "Ticket{" +
                 "id=" + id +
