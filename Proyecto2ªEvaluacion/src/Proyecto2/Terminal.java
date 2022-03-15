@@ -20,7 +20,7 @@ public class Terminal {
                     p.MeterCocheP1(IntroducirDatos.introducirStrings("Introduce la Matricula del vehiculo"));
                     break;
                 case 2:
-                    p.buscarCocheP1(IntroducirDatos.introducirInts("Introduce el id del ticket del vehiculo a retirar"));
+                    p.retirarCocheP1(IntroducirDatos.introducirInts("Introduce el id del ticket del vehiculo a retirar"));
                     break;
                 default:
                     System.out.println("No reconocido");

@@ -1,16 +1,13 @@
 package Proyecto2;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Date;
 
 public class Parking {
     protected Ticket planta1[][] = new Ticket[4][5];
     protected Ticket planta2[][] = new Ticket[4][5];
     protected Ticket planta3[][] = new Ticket[4][5];
     protected LocalDate hoy = LocalDate.now();
+    protected DepositoInutil deposito = new DepositoInutil();
     private Ticket vacio= new Ticket("",hoy,0,0,0);
 
     public Parking() {
@@ -65,21 +62,28 @@ public class Parking {
         System.out.println("No hay hueco en ninguna de las 3 plantas");
         return false;
     }
-    public boolean buscarCocheP1(int id){
-        for (int i = 0; i < planta1.length; i++) {
-            for (int j = 0; j <planta1[0].length; j++) {
-                if (planta1[i][j].getId()==id){
-                    System.out.println("Se eliminará el vehiculo con la siguiente informacion");
-                    System.out.println(planta1[i][j].toString());
-                    planta1[i][j] = vacio;
-                    return true;
+    public boolean retirarCocheP1(int id){
+        try {
+            double precio = coste();
+            pagar(precio,IntroducirDatos.introducirDoubles("Introduzca el dinero necesario para pagar"));
+            for (int i = 0; i < planta1.length; i++) {
+                for (int j = 0; j <planta1[0].length; j++) {
+                    if (planta1[i][j].getId()==id){
+                        System.out.println("Se eliminará el vehiculo con la siguiente informacion");
+                        System.out.println(planta1[i][j].toString());
+                        planta1[i][j] = vacio;
+                        return true;
+                    }
                 }
             }
+            retirarCocheP2(id);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
-        buscarCocheP2(id);
+
         return false;
     }
-    public boolean buscarCocheP2(int id){
+    public boolean retirarCocheP2(int id){
         for (int i = 0; i < planta2.length; i++) {
             for (int j = 0; j <planta2[0].length; j++) {
                 if (planta2[i][j].getId()==id){
@@ -90,10 +94,10 @@ public class Parking {
                 }
             }
         }
-        buscarCocheP3(id);
+        retirarCocheP3(id);
         return false;
     }
-    public boolean buscarCocheP3(int id){
+    public boolean retirarCocheP3(int id){
         for (int i = 0; i < planta3.length; i++) {
             for (int j = 0; j <planta3[0].length; j++) {
                 if (planta3[i][j].getId()==id){
@@ -107,11 +111,17 @@ public class Parking {
         System.out.println("El id introducido no es valido");
         return false;
     }
-    public void pagar(double introducido){
-
+    public double coste(){
+        int min = IntroducirDatos.introducirInts("Introduzca cuantos minutos ha estado");
+        System.out.println("El importe asciende a: "+min*0.5+"€");
+        return min*0.5;
     }
-    public void sacarCoche() {
-        System.out.println("Adios");
+    public void pagar(double coste,double introducido) throws ParkingException{
+        if (coste>introducido){
+            throw new ParkingException("El dinero introducido es menor que el coste");
+        }else{
+            deposito.darVuelta(coste,introducido);
+        }
     }
 
     public void mostrarParking(){
