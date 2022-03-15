@@ -166,6 +166,7 @@ public class Parking {
     }
     //Imprime cada planta del parking
     public void mostrarParking(){
+        System.out.println("---------------------------------");
         System.out.println(" PRIMERA PLANTA");
         System.out.println("---------------------------------");
         for (int i = 0; i < planta1.length; i++) {
@@ -177,9 +178,9 @@ public class Parking {
                     System.out.print("║█║");//En caso de estar ocupada la plaza imprime esta otra
                 }
                 }
-            System.out.println("---------------------------------");
             System.out.println();
             }
+        System.out.println("---------------------------------");
         System.out.println(" SEGUNDA PLANTA");
         System.out.println("---------------------------------");
         for (int i = 0; i < planta1.length; i++) {
@@ -191,9 +192,10 @@ public class Parking {
                     System.out.print("║█║");
                 }
             }
-            System.out.println("---------------------------------");
+
             System.out.println();
         }
+        System.out.println("---------------------------------");
         System.out.println(" TERCERA PLANTA");
         System.out.println("---------------------------------");
         for (int i = 0; i < planta1.length; i++) {
@@ -205,10 +207,10 @@ public class Parking {
                     System.out.print("║█║");
                 }
             }
-            System.out.println("---------------------------------");
+
             System.out.println();
         }
-
+        System.out.println("---------------------------------");
     }
 }
 

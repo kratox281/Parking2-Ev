@@ -12,7 +12,7 @@ public class Terminal {
             //Muestra el estado actual del parking en las 3 plantas
             p.mostrarParking();
             try {
-                c = IntroducirDatos.introducirInts("Que deseas realizar" +
+                c = IntroducirDatos.introducirInts("Que deseas realizar " +
                         "1:Meter un coche || 2: Sacar un coche");
             } catch (Exception e) {
                 System.out.println("Error en la introducción de datos");
