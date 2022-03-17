@@ -1,12 +1,16 @@
 package Proyecto2;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class Parking {
     protected Ticket planta1[][] = new Ticket[4][5];//Matriz que representa la primera planta del Parking
     protected Ticket planta2[][] = new Ticket[4][5];//Matriz que representa la segunda planta del Parking
     protected Ticket planta3[][] = new Ticket[4][5];//Matriz que representa la tercera planta del Parking
-    protected LocalDate hoy = LocalDate.now(); //Establece la fecha de hoy
+    protected ZoneId zona = ZoneId.systemDefault();
+    protected Date hoy = Date.from(Instant.now()); //Establece la fecha de hoy
     protected DepositoDinero deposito = new DepositoDinero(); //Crea un deposito de Dinero
     private Ticket vacio= new Ticket("",hoy,0,0,0);//Crea un Ticket que representa las plazas vacias
 
@@ -28,7 +32,7 @@ public class Parking {
         for (int i = 0; i < planta1.length; i++) {
             for (int j = 0; j < planta1[0].length; j++) {
                 if(planta1[i][j].compareTo(vacio)){
-                    this.planta1[i][j]=new Ticket(Matricula,hoy,i,j,1);
+                    this.planta1[i][j]=new Ticket(Matricula,Date.from(Instant.now()),i,j,1);
                     System.out.println("El coche está en la primera planta");
                     System.out.println("Su ticket es el siguiente,recuerdelo bien");
                     planta1[i][j].imprimirTicket();
@@ -75,9 +79,10 @@ public class Parking {
     }
     public boolean retirarCocheP1(int id){
         //Pide el id del ticket para proceder a cobrar y retirar el vehículo.
+        Ticket aRetirar = buscarTicket(id);
         try {
             //Establece cuanto hay que pagar
-            double precio = coste();
+            double precio = coste(aRetirar);
             try {
                 //Cobra al usuario
                 pagar(precio, IntroducirDatos.introducirDoubles("Introduzca el dinero necesario para pagar"));
@@ -130,11 +135,19 @@ public class Parking {
         System.out.println("El id introducido no es valido");
         return false;
     }
-    public double coste(){
-        //Pide al usuario el tiempo que ha estado en el parking y realiza el calculo del importe
-        int min = IntroducirDatos.introducirInts("Introduzca cuantos minutos ha estado");
-        System.out.println("El importe asciende a: "+min*0.5+"€");
-        return min*0.5;
+    public double coste(Ticket saliente){
+        //Esta es la introduccion manual de los minutos
+        //int mins = IntroducirDatos.introducirInts("Introduzca cuantos minutos ha estado");
+        //Este es el calculo automatico de tiempo transcurrido
+        Date inicio = saliente.entrada;
+        Date fin = Date.from(Instant.now());
+        //Calcula los minutos que ha estado realizando la resta entre el momento de la retirada del vehiculo y el momento de la creación del ticket
+        //Y realiza la conversion de milisegundos a minutos.
+        int mins = (int) ((fin.getTime()-inicio.getTime())/60000)+1;
+        //Indica al usuario el tiempo que ha estado y cuanto ha de pagar
+        System.out.println("Has estado :"+mins+" minutos");
+        System.out.println("El importe asciende a: "+mins*0.5+"€");
+        return mins*0.5;
     }
     public void pagar(double coste,double introducido) throws ParkingException{
         //Comprueba que el dinero introducido no es menor que el coste
@@ -212,6 +225,32 @@ public class Parking {
         }
         System.out.println("---------------------------------");
     }
+    public Ticket buscarTicket(int id){
+        for (int i = 0; i < planta1.length; i++) {
+            for (int j = 0; j < planta1[0].length; j++) {
+                if (planta1[i][j].getId() == id) {
+                    return planta1[i][j];
+                }
+            }
+        }
+         for (int i = 0; i < planta2.length; i++) {
+            for (int j = 0; j < planta2[0].length; j++) {
+                if (planta2[i][j].getId() == id) {
+                    return planta2[i][j];
+                }
+            }
+        }
+         for (int i = 0; i < planta3.length; i++) {
+            for (int j = 0; j < planta3[0].length; j++) {
+                if (planta3[i][j].getId() == id) {
+                    return planta3[i][j];
+                }
+            }
+        }
+         return vacio;
+
+    }
 }
+
 
 

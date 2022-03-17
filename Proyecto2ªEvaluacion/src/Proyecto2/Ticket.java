@@ -1,12 +1,12 @@
 package Proyecto2;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Ticket {
     protected int id;//ID del ticket
     static int cont = 0;//Cuenta los tickets que se han creado, para despues otorgar a cada uno un ID único
     protected String Matricula;//Matricula del Vehiculo del vehiculo asociado al ticket
-    protected LocalDate entrada;//Fecha de la impresión del ticket
+    protected Date entrada;//Fecha de la impresión del ticket
     protected int fila;//Fila en la que se encuentra aparcado el vehículo
     protected int columna;//Columna en la que se encuentra aparcado el vehículo
     protected int planta;//Planta en la que se encuentra aparcado el vehículo
@@ -15,7 +15,7 @@ public class Ticket {
 
     }
     //Constructor completo de Tickets.
-    public Ticket(String matricula, LocalDate entrada,int fila,int columna,int planta) {
+    public Ticket(String matricula, Date entrada,int fila,int columna,int planta) {
         setId(cont);
         cont++;
         Matricula = matricula;
@@ -43,11 +43,11 @@ public class Ticket {
         Matricula = matricula;
     }
 
-    public LocalDate getEntrada() {
+    public Date getEntrada() {
         return entrada;
     }
 
-    public void setEntrada(LocalDate entrada) {
+    public void setEntrada(Date entrada) {
         this.entrada = entrada;
     }
 
