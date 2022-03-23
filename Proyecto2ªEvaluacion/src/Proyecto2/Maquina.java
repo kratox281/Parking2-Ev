@@ -5,16 +5,22 @@ import java.time.ZoneId;
 import java.util.Date;
 
 public class Maquina {
-    protected Ticket planta1[][] = new Ticket[4][5];//Matriz que representa la primera planta del Parking
-    protected Ticket planta2[][] = new Ticket[4][5];//Matriz que representa la segunda planta del Parking
-    protected Ticket planta3[][] = new Ticket[4][5];//Matriz que representa la tercera planta del Parking
-    protected double pm;//Precio por minuto
-    protected ZoneId zona = ZoneId.systemDefault();
-    protected Date hoy = Date.from(Instant.now()); //Establece la fecha de hoy
-    protected DepositoDinero deposito = new DepositoDinero(); //Crea un deposito de Dinero
+    private Ticket planta1[][] = new Ticket[4][5];//Matriz que representa la primera planta del Parking
+    private Ticket planta2[][] = new Ticket[4][5];//Matriz que representa la segunda planta del Parking
+    private Ticket planta3[][] = new Ticket[4][5];//Matriz que representa la tercera planta del Parking
+    private double pm;//Precio por minuto
+    private Date hoy = Date.from(Instant.now()); //Establece la fecha de hoy
+    private DepositoDinero deposito = new DepositoDinero(); //Crea un deposito de Dinero
     private Ticket vacio= new Ticket("",hoy,0,0,0);//Crea un Ticket que representa las plazas vacias
 
     //El constructor rellena las matrices con el Ticket vacio
+    public Maquina(double prm) {
+        this.pm = prm;
+        IntroducirDatos.rellenar(planta1,vacio);
+        IntroducirDatos.rellenar(planta2,vacio);
+        IntroducirDatos.rellenar(planta3,vacio);
+    }
+    //Este constructor pide por pantalla el precio por minuto, el otro lo establece fijo como valor en el codigo
     public Maquina() {
         this.pm = IntroducirDatos.introducirDoubles("Introduce el precio por minuto");
         IntroducirDatos.rellenar(planta1,vacio);

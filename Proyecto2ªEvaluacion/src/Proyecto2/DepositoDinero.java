@@ -1,16 +1,16 @@
 package Proyecto2;
 
 public class DepositoDinero {
-    protected  int Monedas05;//Monedas de 5 cent
-    protected  int Monedas10;//Monedas de 10 cent
-    protected  int Monedas20;//Monedas de 20 cent
-    protected  int Monedas50;//Monedas de 50 cent
-    protected  int Monedas100;//Monedas de 1€
-    protected  int Monedas200;//Monedas de 2€
-    protected  int Billete5;//Billete de 5€
-    protected  int Billete10;//Billete de 10€
-    protected  int Billete20;//Billete de 20€
-    protected int c1, c2, c3, c4, c5, c6, c7, c8, c9 =0;//Variables que utiliza el programa para contar las veces que se modifican las
+    private  int Monedas05;//Monedas de 5 cent
+    private  int Monedas10;//Monedas de 10 cent
+    private  int Monedas20;//Monedas de 20 cent
+    private  int Monedas50;//Monedas de 50 cent
+    private  int Monedas100;//Monedas de 1€
+    private  int Monedas200;//Monedas de 2€
+    private  int Billete5;//Billete de 5€
+    private  int Billete10;//Billete de 10€
+    private  int Billete20;//Billete de 20€
+    private int c1, c2, c3, c4, c5, c6, c7, c8, c9 =0;//Variables que utiliza el programa para contar las veces que se modifican las
                                                         //variables a la hora de delvolver el dinero
     protected double Vueltas;//Variable que almacena la vuelta que hay que dar cuando se realice el pago
 
@@ -132,6 +132,12 @@ public class DepositoDinero {
                 this.setVueltas(modificar(this.Vueltas, 0.05));
                 this.setMonedas05(this.Monedas05 - 1);
                 c1++;
+            }
+            else{
+                mostrarVueltas();
+                System.out.println("No queda más dinero para devolver");
+                System.out.println("Sentimos las molestias");
+                return run;
             }
             if(this.Vueltas==0){
                 //Cuando la vuelta es 0 muestra como se han dado las vueltas y finaliza el bucle

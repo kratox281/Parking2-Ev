@@ -1,13 +1,13 @@
 package Proyecto2;
 
 public class Terminal {
-    static Maquina p = new Maquina();//Crea un parking sobre el que se van a ejecutar todas las funciones
+    static Maquina p = new Maquina(0.5);//Crea un parking sobre el que se van a ejecutar todas las funciones
     static int c = 0;//Variable que define el caso a elegir en el switch del menú,la cual es por defecto 0
     static boolean end = false;//Variable que establece la ejecución del bucle
     //Metodo menú el cual sirve para decidir las acciones a realizar
     public static void menu(){
         //Imprime la imagen de la P de parking a modo de bienvenida al terminal
-        Imagenes.imprimirBienvenida();
+        //Imagenes.imprimirBienvenida();
         do {
             //Muestra el estado actual del parking en las 3 plantas
             p.mostrarParking();

@@ -3,13 +3,13 @@ package Proyecto2;
 import java.util.Date;
 
 public class Ticket {
-    protected int id;//ID del ticket
+    private int id;//ID del ticket
     static int cont = 0;//Cuenta los tickets que se han creado, para despues otorgar a cada uno un ID único
-    protected String Matricula;//Matricula del Vehiculo del vehiculo asociado al ticket
+    private String Matricula;//Matricula del Vehiculo del vehiculo asociado al ticket
     protected Date entrada;//Fecha de la impresión del ticket
-    protected int fila;//Fila en la que se encuentra aparcado el vehículo
-    protected int columna;//Columna en la que se encuentra aparcado el vehículo
-    protected int planta;//Planta en la que se encuentra aparcado el vehículo
+    private int fila;//Fila en la que se encuentra aparcado el vehículo
+    private int columna;//Columna en la que se encuentra aparcado el vehículo
+    private int planta;//Planta en la que se encuentra aparcado el vehículo
     //Constructor vacio de Tickets
     public Ticket(){
 
